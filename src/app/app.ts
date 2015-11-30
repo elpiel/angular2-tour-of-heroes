@@ -1,5 +1,5 @@
 //noinspection TypeScriptCheckImport
-import {bootstrap, Component, FORM_DIRECTIVES, NgFor} from 'angular2/angular2';
+import {bootstrap, Component, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 class Hero {
     id:number;
     name:string;
@@ -11,15 +11,19 @@ class Hero {
       <h1>{{title}}</h1>
       <h2>My Heroes</h2>
        <ul class="heroes">
-        <li *ng-for="#hero of heroes">
+        <li *ng-for="#hero of heroes"
+        (click)="onSelect(hero)"
+        [ng-class]="getSelectedClass(hero)">
         <span class="badge">{{hero.id}}</span> {{hero.name}}
         </li>
        </ul>
-      <h2>{{hero.name}} details!</h2>
-      <div><label>id: </label>{{hero.id}}</div>
-      <div>
-        <label>Name: </label>
-        <input [(ng-model)]="hero.name" placeholder="name">
+      <div *ng-if="selectedHero">
+          <h2>{{selectedHero.name}} details!</h2>
+          <div><label>id: </label>{{selectedHero.id}}</div>
+          <div>
+            <label>Name: </label>
+            <input [(ng-model)]="selectedHero.name" placeholder="name">
+          </div>
       </div>
     `,
 
@@ -40,16 +44,21 @@ class Hero {
   .selected { background-color: #EEE; color: #369; }
   `],
 
-    directives: [FORM_DIRECTIVES, NgFor]
+    directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 
 class AppComponent {
     public title = 'Tour of Heroes';
-    public hero:Hero = {
-        id: 1,
-        name: 'Windstorm'
-    };
+    public selectedHero:Hero;
     public heroes = HEROES;
+
+    onSelect(hero:Hero) {
+        this.selectedHero = hero;
+    }
+
+    getSelectedClass(hero:Hero) {
+        return {'selected': hero === this.selectedHero};
+    }
 }
 
 bootstrap(AppComponent);
