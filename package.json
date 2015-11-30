@@ -1,0 +1,32 @@
+{
+  "name": "angular2-quickstart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc -p src -w",
+    "start": "live-server --open=src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twify93/angular2-quickstart.git"
+  },
+  "keywords": [
+    "angular2",
+    "quickstart"
+  ],
+  "author": "Lachezar Lechev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twify93/angular2-quickstart/issues"
+  },
+  "homepage": "https://github.com/twify93/angular2-quickstart",
+  "dependencies": {
+    "angular2": "2.0.0-alpha.46",
+    "systemjs": "0.19.2"
+  },
+  "devDependencies": {
+    "live-server": "^0.8.2",
+    "typescript": "^1.6.2"
+  }
+}
